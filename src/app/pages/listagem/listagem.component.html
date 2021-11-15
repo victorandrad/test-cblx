@@ -12,15 +12,32 @@
     <nz-list-item *ngFor="let item of produtos">
       <nz-list-item-meta [nzDescription]="item.descricao" [nzTitle]="item.nome">
       </nz-list-item-meta>
+
+      <a (click)="showModal(item)">Editar</a>
+      &nbsp;
+      &nbsp;
+      <a (click)="deleteProduto(item)">Apagar</a>
     </nz-list-item>
 
   </nz-list>
 
   <nz-empty *ngIf="produtos?.length === 0"></nz-empty>
-  
+
   <div *ngIf="produtos && produtos?.length > 0" class="container-pagination">
     <nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="pageTotal" [nzPageSize]="pageSize"
       (nzPageIndexChange)="changePage($event)"></nz-pagination>
   </div>
 
 </div>
+
+<!-- <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Show Modal</span></button> -->
+<nz-modal [(nzVisible)]="isVisibleDetails" nzTitle="Detalhe do produto" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <div *ngIf="itemDetail">
+    <p>Nome: {{ itemDetail.nome}}</p>
+    <p>Descrição: {{ itemDetail.descricao }}</p>
+    <p>Tipo: {{ listagemProdutoService.tipo(itemDetail.tipo) }}</p>
+    <p>Data de validade: {{ itemDetail.dataDeValidade | date: 'dd/MM/yyyy' }}</p>
+    <p>Quantidade: {{ itemDetail.quantidade }}</p>
+    <p>Preço: {{ itemDetail.precoDeVenda }}</p>
+  </div>
+</nz-modal>

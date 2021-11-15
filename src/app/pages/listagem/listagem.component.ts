@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd';
 import { IProduto } from 'src/app/interfaces/produto';
+import { DeletaProdutoService } from 'src/app/services/deleta-produto.service';
 import { ListagemProdutoService } from 'src/app/services/listagem-produto.service';
 
 @Component({
@@ -12,9 +14,13 @@ export class ListagemComponent implements OnInit {
   pageTotal: number = 0;
   pageIndex: number = 1;
   pageSize: number = 5;
+  isVisibleDetails: boolean = false;
+  itemDetail: IProduto;
 
   constructor(
-    private listagemProdutoService: ListagemProdutoService
+    public listagemProdutoService: ListagemProdutoService,
+    public deletaProdutoService: DeletaProdutoService,
+    private modalService: NzModalService,
   ) { }
 
   ngOnInit() {
@@ -31,6 +37,37 @@ export class ListagemComponent implements OnInit {
   }
 
   changePage(event: number) {
+    this.pageIndex = event;
     this.loadProdutos(event);
+  }
+
+  showModal(item: IProduto) {
+    this.isVisibleDetails = true;
+    this.itemDetail = item;
+  }
+
+  handleCancel() {
+    this.isVisibleDetails = false;
+    this.itemDetail = undefined;
+  }
+
+  handleOk() {
+    this.isVisibleDetails = false;
+    this.itemDetail = undefined;
+  }
+
+  deleteProduto(item): void {
+    this.modalService.warning({
+      nzTitle: 'Aviso',
+      nzContent: 'Tem certeza que deseja apagar esse produto?',
+      nzOkText: 'Sim',
+      nzCancelText: 'Não',
+      nzOnOk: () => {
+        console.log('deletou');
+        this.deletaProdutoService.execute(item).then(() => {
+          this.loadProdutos(this.pageIndex = 1);
+        })
+      }
+    });
   }
 }
