@@ -44,6 +44,7 @@ export class AppComponent {
     } else {
       this.logged = !!email;
       localStorage.setItem('email', email.value);
+      this.loginForm.reset();
     }
   }
 

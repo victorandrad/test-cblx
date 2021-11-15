@@ -1,0 +1,17 @@
+.container-listagem {
+    padding: 1rem;
+
+    .header-list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.container-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+}

@@ -1,4 +1,11 @@
 <ng-container *ngIf="logged">
+  <nz-page-header class="site-page-header">
+    <nz-page-header-title>Descontrolada</nz-page-header-title>
+    <nz-page-header-extra>
+      <button nz-button>Sair</button>
+    </nz-page-header-extra>
+  </nz-page-header>
+
   <div class="container">
     <div class="menu-container">
       <ul nz-menu nzMode="inline">
@@ -56,8 +63,8 @@
 
       </div>
 
-      <nz-alert *ngIf="!!messageError" nzType="error" nzCloseable nzMessage="Aviso"
-        [nzDescription]="messageError" (nzOnClose)="afterClose()">
+      <nz-alert *ngIf="!!messageError" nzType="error" nzCloseable nzMessage="Aviso" [nzDescription]="messageError"
+        (nzOnClose)="afterClose()">
       </nz-alert>
     </div>
   </div>

@@ -1,3 +1,13 @@
+nz-page-header {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    
+    nz-page-header-title {
+        font-family: 'Abril Fatface' !important;
+        font-size: 1.5rem;
+    }
+
+}
+
 .container {
     display: flex;
     flex: 1;
