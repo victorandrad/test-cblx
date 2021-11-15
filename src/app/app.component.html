@@ -1,21 +1,64 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<ng-container *ngIf="logged">
+  <div class="container">
+    <div class="menu-container">
+      <ul nz-menu nzMode="inline">
+        <li nz-menu-group>
+          <ul>
+            <li nz-menu-item [nzSelected]="router.url === '/'" [routerLink]="['/']">
+              Listagem de produtos
+            </li>
+            <li nz-menu-item [nzSelected]="router.url === '/cadastro'" [routerLink]="['/cadastro']">
+              Cadastro de produtos
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-container>
 
-<router-outlet></router-outlet>
+<ng-container *ngIf="!logged">
+  <div class="container">
+    <div class="login-container">
+      <div [formGroup]="loginForm" class="login-form">
+
+        <div class="title">
+          Descontrolada
+        </div>
+
+        <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
+          <input type="email" nz-input placeholder="Digite seu e-mail" formControlName="email" />
+        </nz-input-group>
+
+        <ng-template #prefixTemplateUser><i nz-icon nzType="user"></i></ng-template>
+
+        <br />
+        <br />
+
+        <nz-input-group [nzSuffix]="suffixTemplate">
+          <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="Digite sua senha"
+            formControlName="password" />
+        </nz-input-group>
+
+        <ng-template #suffixTemplate>
+          <i class="password" nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+            (click)="passwordVisible = !passwordVisible">
+          </i>
+        </ng-template>
+
+        <br />
+        <br />
+
+        <button (click)="login()" nz-button nzType="primary">Entrar</button>
+
+      </div>
+
+      <nz-alert *ngIf="!!messageError" nzType="error" nzCloseable nzMessage="Aviso"
+        [nzDescription]="messageError" (nzOnClose)="afterClose()">
+      </nz-alert>
+    </div>
+  </div>
+</ng-container>
