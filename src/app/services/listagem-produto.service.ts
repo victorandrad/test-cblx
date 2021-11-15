@@ -20,7 +20,7 @@ export class ListagemProdutoService {
       .set('tamanhoDaPagina', pageSize.toString());
 
     return new Promise((resolve, reject) => {
-      this.http.get(`${environment.baseUrl}/lojas/${localStorage.getItem('email')}/produtos`,
+      this.http.get(`${environment.baseUrl}/${localStorage.getItem('email')}`,
         {
           params,
           headers: {

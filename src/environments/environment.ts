@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://descontrolada-backend.cblx.com.br',
+  baseUrl: 'http://php73.nano.docker/backend-cblx/public/api',
 };
 
 /*

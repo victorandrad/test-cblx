@@ -1,1 +1,49 @@
-<p>Cadastro</p>
+<div class="cadastro-container">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="4" nzRequired nzFor="nome">Nome</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzErrorTip="Digite o nome do produto!">
+                <input id="note" type="text" nz-input formControlName="nome" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="4" nzRequired nzFor="descricao">Descrição</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzErrorTip="Digite a descrição do produto!">
+                <textarea formControlName="descricao" nz-input rows="2"
+                    placeholder="Digite a descrição do produto"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="4" nzFor="tipo" nzRequired>Tipo</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzErrorTip="Tipo">
+                <nz-select id="tipo" formControlName="tipo" nzPlaceHolder="Selecione o tipo do produto">
+                    <nz-option nzValue="1" nzLabel="Orgânico"></nz-option>
+                    <nz-option nzValue="2" nzLabel="Não orgânico"></nz-option>
+                </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="4" nzRequired nzFor="validade">Data de validade</nz-form-label>
+            <nz-form-control [nzSpan]="18" nzErrorTip="Coloque uma data de validade!">
+                <nz-date-picker formControlName="validade"></nz-date-picker>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="4" nzRequired nzFor="preco">Preço</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzErrorTip="Digite o preço do produto!">
+                <input type="number" step="0.01" id="preco" type="text" nz-input formControlName="preco" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="4" nzRequired nzFor="quantidade">Quantidade</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzErrorTip="Digite a quantidade!">
+                <input type="number" id="quantidade" type="text" nz-input formControlName="quantidade" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzSpan]="2" [nzOffset]="20">
+                <button nz-button nzType="primary">Cadastrar</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</div>
