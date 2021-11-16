@@ -1,4 +1,3 @@
-export interface IProdutoObject extends Array<IProduto>{}
 export interface IProduto {
     dataDeValidade: string;
     descricao: string;

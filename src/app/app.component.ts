@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
 
   constructor(
     public router: Router,
+    private modalService: NzModalService,
   ) {
     this.logged = !!localStorage.getItem('email');
   }
@@ -28,7 +30,7 @@ export class AppComponent {
 
   login() {
     this.messageError = undefined;
-    
+
     let { email, password } = this.loginForm.controls;
 
     if (email.errors) {
@@ -46,6 +48,20 @@ export class AppComponent {
       localStorage.setItem('email', email.value);
       this.loginForm.reset();
     }
+  }
+
+  logout() {
+    this.modalService.confirm({
+      nzTitle: 'Aviso',
+      nzContent: 'Tem certeza que deseja fazer logout?',
+      nzOkText: 'Sim',
+      nzCancelText: 'Não',
+      nzOnOk: () => {
+        this.logged = false;
+        localStorage.clear();
+      }
+    });
+
   }
 
   afterClose() {

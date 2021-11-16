@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://php73.nano.docker/backend-cblx/public/api',
+  baseUrl: 'https://srdelivery.app/backend-cblx/public/api',
 };

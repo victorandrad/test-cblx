@@ -1,8 +1,8 @@
 <ng-container *ngIf="logged">
   <nz-page-header class="site-page-header">
-    <nz-page-header-title>Descontrolada</nz-page-header-title>
+    <nz-page-header-title>Descontrolada®</nz-page-header-title>
     <nz-page-header-extra>
-      <button nz-button>Sair</button>
+      <button nz-button (click)="logout()">Sair</button>
     </nz-page-header-extra>
   </nz-page-header>
 
@@ -33,7 +33,7 @@
       <div [formGroup]="loginForm" class="login-form">
 
         <div class="title">
-          Descontrolada
+          Descontrolada®
         </div>
 
         <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
